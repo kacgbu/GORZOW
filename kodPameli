@@ -1,0 +1,73 @@
+import random
+
+class gracz():
+
+    def __init__(self):
+
+        self.talia = ["walet", "dama", "król", "szóstka", "siódemka", "ósemka", "dziewiątka", "dziesiątka", "as"]
+        self.punkty_gracza = 0
+        self.duze_pkt_gracza = 0
+        self.talia_gracza = []
+
+    def wylosuj_karte(self):
+
+        self.los = random.choice(self.talia)
+        self.talia_gracza.append(self.los)
+
+        if self.los == "walet":
+            self.punkty_gracza += 2
+        elif self.los == "dama":
+            self.punkty_gracza += 3
+        elif self.los == "król":
+            self.punkty_gracza += 4
+        elif self.los == "szóstka":
+            self.punkty_gracza += 6
+        elif self.los == "siódemka":
+            self.punkty_gracza += 7
+        elif self.los == "ósemka":
+            self.punkty_gracza += 8
+        elif self.los == "dziewiątka":
+            self.punkty_gracza += 9
+        elif self.los == "dziesiątka":
+            self.punkty_gracza += 10
+        else:
+            self.punkty_gracza += 11
+
+uzytkownik = gracz()
+komputer = gracz()
+
+while uzytkownik.duze_pkt_gracza != 21 and komputer.duze_pkt_gracza != 21: #można dodać odmierzanie czasu (60 minut-stop)
+    if uzytkownik.punkty_gracza <21 and komputer.punkty_gracza <21:
+        print("Naciśnij enter, aby wylosować kartę:") #można dać opcję wyboru, czy losować
+        nowy_los = input()
+        uzytkownik.wylosuj_karte()
+        print("Twoje karty:",uzytkownik.talia_gracza)
+        print("Twoje punkty:",uzytkownik.punkty_gracza)
+        komputer.wylosuj_karte()
+        print("Punkty komputera:",komputer.talia_gracza)
+        print("Punkty komputera:",komputer.punkty_gracza)
+    else:
+        if uzytkownik.punkty_gracza >= 22:
+            print("Duży punkt dla komputera!")
+            komputer.duze_pkt_gracza += 1
+            komputer.punkty_gracza = 0
+            uzytkownik.punkty_gracza = 0
+        elif komputer.punkty_gracza >= 22:
+            print("Duży punkt dla Ciebie!")
+            uzytkownik.duze_pkt_gracza += 1
+            komputer.punkty_gracza = 0
+            uzytkownik.punkty_gracza = 0
+        elif uzytkownik.punkty_gracza == 21:
+            print("Duży punkt dla Ciebie!")
+            uzytkownik.duze_pkt_gracza += 1
+            komputer.punkty_gracza = 0
+            uzytkownik.punkty_gracza = 0
+        else:
+            print("Duży punkt dla komputera!")
+            komputer.duze_pkt_gracza += 1
+            komputer.punkty_gracza = 0
+            uzytkownik.punkty_gracza = 0
+if uzytkownik.duze_pkt_gracza == 21:
+    print("WYGRAŁEŚ GRĘ!")
+else:
+    print("KOMPUTER WYGRAŁ GRĘ!")
