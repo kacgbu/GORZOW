@@ -1,0 +1,21 @@
+import random
+
+def zliczanie(reka):        # tu zliczamy punkty na kazdej rece
+    punkty = 0
+    for i in reka:
+        if i == "9_t" or i == "9_ka" or i == "9_ki" or i == "9_p":
+            punkty += 0
+        elif i == "10_t" or i == "10_ka" or i == "10_ki" or i == "10_p":
+            punkty += 10
+        elif i == "W_t" or i == "W_ka" or i == "W_ki" or i == "W_p":
+            punkty += 2
+        elif i == "D_t" or i == "D_ka" or i == "D_ki" or i == "D_p":
+            punkty += 3
+        elif i == "K_t" or i == "K_ka" or i == "K_ki" or i == "K_p":
+            punkty += 4
+        else:               # Tu sa asy
+            punkty += 11
+    return punkty
+
+karty = ["9_t", "10_t", "W_t", "D_t", "K_t", "A_t", "9_ka", "10_ka", "W_ka", "D_ka", "K_ka", "A_ka", "9_ki", "10_ki", "W_ki", "D_ki", "K_ki", "A_ki", "9_p", "10_p", "W_p", "D_p", "K_p", "A_p"]
+# _t - trefle, _ka - kara, _ki -kiery, _p - piki
